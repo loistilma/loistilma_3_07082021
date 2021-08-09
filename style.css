@@ -639,6 +639,8 @@ a[data-lightbox]:hover img {
     background: none;
 }
 
+/* Stock value
+
 h1,
 h2,
 h3,
@@ -652,6 +654,23 @@ a {
     font-family: "helvetica";
     font-weight: 400;
     color: #575757!important;
+}
+
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+label,
+.btn,
+a {
+    font-family: "helvetica";
+    font-weight: 400;
+    color: #121212!important;
 }
 
 .container {
@@ -735,8 +754,16 @@ h4 {
     margin-top: 24px;
 }
 
+/* Stock value
+
 .white {
     color: #FFFFFF!important;
+}
+
+*/
+
+.white {
+    color: #121212!important;
 }
 
 .portfolio-thumb {
@@ -766,17 +793,44 @@ h4 {
     background-color: #FFFFFF;
 }
 
+/* Stock value
+
 .bgc-dark-slate-blue {
     background-color: #364577;
 }
+
+*/
+
+.bgc-dark-slate-blue {
+    background-color: rgba(255, 255, 255, .7);
+}
+
+/* Stock value
 
 .bgc-atomic-tangerine {
     background-color: #F3976C;
 }
 
+*/
+
+.bgc-atomic-tangerine {
+    background-color: #F67E46;
+}
+
+/* Stock value
+
 .tc-white {
     color: #F3976C!important;
 }
+
+*/
+
+.tc-white {
+    color: #F67E46!important;
+    position: relative;
+}
+
+/* Stock value
 
 .btn-atomic-tangerine {
     background: #F3976C;
@@ -787,6 +841,19 @@ h4 {
     background: #c27956!important;
     color: #FFFFFF!important;
 }
+
+*/
+
+.btn-atomic-tangerine {
+    background: #F67E46;
+    color: #121212!important;
+}
+
+.btn-atomic-tangerine:hover {
+    background: #c27956!important;
+    color: #121212!important;
+}
+
 
 .ltc-white {
     color: #FFFFFF!important;
