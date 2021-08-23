@@ -1,22 +1,28 @@
 const webpack = require('webpack');
-const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+//const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require('path');
 
 module.exports = {
   entry: './src/index.js',
   output: {
-    clean: true,
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    clean: true,
   },
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader']
+      },
+      {
+        test: /\.ico$/i,
+        type: 'asset/resource',
+        generator: {
+            filename: '[name][ext]'
+        }
       },
       {
         test: /\.(png|jpg|jpeg|gif)$/i,
@@ -39,6 +45,7 @@ module.exports = {
     ],
   },
   plugins: [
+    //new BundleAnalyzerPlugin(),
     new MiniCssExtractPlugin(),
     new webpack.ProvidePlugin({
         $: 'jquery',
@@ -55,8 +62,4 @@ module.exports = {
         filename: 'contact.html',
       })
   ],
-  optimization: {
-    minimize: true,    
-    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
-  },
 };

@@ -8,10 +8,11 @@ import './css/et-line.css';
 import './js/bootstrap.js';
 import './js/blocs.js';
 import './js/jquery.touchSwipe.js';
-import './js/gmaps.js';
+import './js/jqBootstrapValidation.js';
+import './js/formHandler.js';
 
 // Import favicon
-import './favicon.jpg';
+import './favicon.ico';
 
 // Import images
 import './img/la-chouette-agence.png';

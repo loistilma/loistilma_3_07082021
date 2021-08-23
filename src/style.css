@@ -3,6 +3,7 @@ body {
     padding: 0;
     background: #FFF;
     overflow-x: hidden;
+    position: relative;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -10,7 +11,7 @@ body {
 a,
 button {
     transition: all .3s ease-in-out;
-    outline: none!important;
+    /*outline: none!important;*/
 }
 
 a:hover {
@@ -461,7 +462,7 @@ nav .caret {
 }
 
 button {
-    outline: none!important;
+    /*outline: none!important;*/
 }
 
 .btn-rd {
@@ -696,7 +697,7 @@ a {
 }
 
 p {
-    font-size: 11px;
+    font-size: 14px;
 }
 
 .tight-width-whitespace {
@@ -782,7 +783,17 @@ h4 {
     color: #121212!important;
 }
 
+/* Stock value
+
 .portfolio-thumb {
+    margin-bottom: 24px;
+}
+
+*/
+
+.portfolio-thumb {
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 24px;
 }
 
@@ -817,9 +828,6 @@ h4 {
 
 */
 
-.bgc-dark-slate-blue {
-    background-color: rgba(255, 255, 255, .7);
-}
 
 /* Stock value
 
@@ -931,13 +939,13 @@ h4 {
     }
 }
 
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
     .b-parallax {
         background-attachment: scroll;
     }
 }
 
-@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) {
+@media only screen and (min-width: 1024px) and (max-width: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) {
     .b-parallax {
         background-attachment: scroll;
     }
@@ -956,8 +964,8 @@ h4 {
         position: relative;
     }
     .bloc {
-        padding-left: constant(safe-area-inset-left);
-        padding-right: constant(safe-area-inset-right);
+        padding-left: const(safe-area-inset-left);
+        padding-right: const(safe-area-inset-right);
     }
     .bloc-group,
     .bloc-group .bloc {
@@ -967,8 +975,8 @@ h4 {
     .bloc-fill-screen .fill-bloc-top-edge,
     .bloc-fill-screen .fill-bloc-bottom-edge {
         padding: 0 20px;
-        padding-left: constant(safe-area-inset-left);
-        padding-right: constant(safe-area-inset-right);
+        padding-left: const(safe-area-inset-left);
+        padding-right: const(safe-area-inset-right);
     }
 }
 
@@ -1122,4 +1130,31 @@ h4 {
     .bloc-mob-center-text {
         text-align: center;
     }
+}
+
+
+
+/* ADD */
+#bloc-2-services > .container > .row:first-of-type h2 {
+    font-weight: 500;
+    padding: 0 50px;
+}
+
+blockquote {
+    margin: 0;
+    font-style: italic;
+}
+
+blockquote p {
+    padding: 15px;
+    background: #eee;
+    border-radius: 5px;
+}
+
+blockquote p::before {
+    content: '\201C';
+}
+
+figure figcaption {
+    text-align: center;
 }
