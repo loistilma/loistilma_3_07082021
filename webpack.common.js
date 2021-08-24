@@ -1,11 +1,29 @@
 const webpack = require('webpack');
+const glob = require('glob')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-//const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const PurgecssPlugin = require('purgecss-webpack-plugin')
 const path = require('path');
 
+const PATHS = {
+  src: path.join(__dirname, 'src')
+}
+
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    index: {
+      import: './src/index.js',
+      dependOn: 'shared',
+    },
+    contact: {
+      import: './src/contact.js',
+      dependOn: 'shared',
+    },
+    shared: {
+      import: './src/shared.js',
+    },
+  },
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
@@ -25,7 +43,7 @@ module.exports = {
         }
       },
       {
-        test: /\.(png|jpg|jpeg|gif)$/i,
+        test: /\.webp$/i,
         type: 'asset/resource',
         generator: {
             filename: 'img/[name][ext]'
@@ -45,8 +63,11 @@ module.exports = {
     ],
   },
   plugins: [
-    //new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin(),
     new MiniCssExtractPlugin(),
+    new PurgecssPlugin({
+      paths: glob.sync(`${PATHS.src}/**/*`,  { nodir: true }),
+    }),
     new webpack.ProvidePlugin({
         $: 'jquery',
         jQuery: 'jquery',
@@ -55,11 +76,13 @@ module.exports = {
       inject: 'body',
       template: './src/index.html',
       filename: 'index.html',
+      chunks: ['index', 'shared'],
     }),
     new HtmlWebpackPlugin({
         inject: 'body',
         template: './src/contact.html',
         filename: 'contact.html',
+        chunks: ['contact', 'shared'],
       })
   ],
 };
