@@ -1,3 +1,7 @@
+// Import stylesheets
+import './contact.css';
+
 // Import scripts
-import './js/jqBootstrapValidation.js';
-import './js/formHandler.js';
+import './scripts/jqBootstrapValidation.js';
+import './scripts/otherRadio.js';
+import './scripts/formHandler.js';

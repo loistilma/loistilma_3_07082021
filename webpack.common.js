@@ -1,9 +1,10 @@
 const webpack = require('webpack');
 const glob = require('glob')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const PurgecssPlugin = require('purgecss-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+//const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const HtmlWebpackInjectPreload = require('@principalstudio/html-webpack-inject-preload');
 const path = require('path');
 
 const PATHS = {
@@ -25,7 +26,7 @@ module.exports = {
     },
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: 'scripts/[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
   },
@@ -33,7 +34,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.ico$/i,
@@ -46,7 +47,7 @@ module.exports = {
         test: /\.webp$/i,
         type: 'asset/resource',
         generator: {
-            filename: 'img/[name][ext]'
+            filename: 'images/[name][ext]'
         }
       },
       {
@@ -56,17 +57,30 @@ module.exports = {
             filename: 'fonts/[name][ext]'
         }
       },
-      {
-        test:/\.html$/,
-        use: ['html-loader']
-      },
     ],
   },
   plugins: [
-    new BundleAnalyzerPlugin(),
-    new MiniCssExtractPlugin(),
-    new PurgecssPlugin({
-      paths: glob.sync(`${PATHS.src}/**/*`,  { nodir: true }),
+    //new BundleAnalyzerPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "styles/[name].css",
+    }),
+    new HtmlWebpackInjectPreload({
+      files: [
+        {
+          //match: /^(?!.*fontawesome-webfont).*\.(woff|woff2)$/i,
+          match: /.*\.(woff2)$/i,
+          attributes: {as: 'font', type: 'font/woff2', crossorigin: true },
+        },
+        {
+          //match: /^(?!.*fontawesome-webfont).*\.(woff|woff2)$/i,
+          match: /.*\.(woff)$/i,
+          attributes: {as: 'font', type: 'font/woff', crossorigin: true },
+        },
+        {
+          match: /la-chouette-agence-banniere.webp$/,
+          attributes: {as: 'image'},
+        },
+      ]
     }),
     new webpack.ProvidePlugin({
         $: 'jquery',
@@ -74,15 +88,26 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       inject: 'body',
-      template: './src/index.html',
+      description: '<meta name="description" content="La chouette agence, entreprise spécialisée dans le web design basée à Lyon, vous aidera dans la création de vos sites internet.">',
+      title: 'Accueil | Entreprise web design à Lyon | La chouette agence',
+      template: './src/template.html',
       filename: 'index.html',
       chunks: ['index', 'shared'],
+      minify: true, 
+      htmlpath: './src/pages',
     }),
     new HtmlWebpackPlugin({
         inject: 'body',
-        template: './src/contact.html',
+        description: '<meta name="description" content="Si vous avez une question ou que vous souhaitez collaborer avec notre agence. Venez-ici pour contacter notre équipe et nous parlez de votre projet.">',
+        title: 'Contact | Agence web design Lyon | La chouette agence',
+        template: './src/template.html',
         filename: 'contact.html',
         chunks: ['contact', 'shared'],
-      })
+        minify: true,
+        htmlpath: './src/pages',
+    }),
+    new PurgecssPlugin({
+      paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`,  { nodir: true }),
+    }),
   ],
 };

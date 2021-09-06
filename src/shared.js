@@ -1,15 +1,21 @@
 // Import stylesheets
-import './css/bootstrap.css';
-import './style.css';
-import './css/font-awesome.css';
-import './css/et-line.css';
+import './styles/bootstrap.css';
+import './shared.css';
+import './color.css';
+import './styles/font-awesome.css';
+import './styles/et-line.css';
 
-// Import scripts
-import './js/bootstrap.js';
-import './js/blocs.js';
+// Bootstrap transition animations
+import 'bootstrap/js/transition';
+
+// Collapse navbar
+import 'bootstrap/js/collapse';
+
+// Chevron - scroll to top of pages
+import './scripts/scrollToTop';
 
 // Import favorite icon
 import './favicon.ico';
 
 // Import images
-import './img/la-chouette-agence.webp';
+import './images/logo-la-chouette-agence.webp';

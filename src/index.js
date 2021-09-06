@@ -1,11 +1,20 @@
-// Import JS
+// Import stylesheets
+import './index.css';
+
+// Light box
+import 'bootstrap/js/modal';
+//import 'bootstrap/js/carousel';
+import './scripts/lightBox';
+import './scripts/jquery.touchSwipe.js';
+
+// Lazy load images
 import 'lazysizes';
-import './js/jquery.touchSwipe.js';
+
+//import './scripts/blocs';
 
 // Import images
-import './img/la-chouette-agence.webp';
-import './img/logo.webp';
-import './img/1.webp';
-import './img/2.webp';
-import './img/3.webp';
-import './img/4.webp';
+import './images/icone-la-chouette-agence.webp';
+import './images/magazine.webp';
+import './images/photographe.webp';
+import './images/kit-photographe.webp';
+import './images/kit-designer.webp';

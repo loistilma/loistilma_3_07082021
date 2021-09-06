@@ -1,0 +1,29 @@
+@media (max-width: 767px) {
+
+    form {
+        padding: 5px;
+    }
+
+}
+
+input[name=othertext] {
+    display: none;
+}
+
+.radio {
+    padding-left: 10px;
+}
+
+form {
+    border: solid 1px #cecece;
+    padding: 15px;
+    border-radius: 7px;
+}
+
+address {
+    padding-left: 10px;
+}
+
+#bloc-7 h2 {
+    margin-top: 10px;
+}
