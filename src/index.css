@@ -38,11 +38,11 @@ a[data-lightbox]:hover::before {
 }
 
 .lightbox-caption {
-    margin: 20px;
-    position: absolute;
+    margin: 0;
+    /*position: absolute;
     left: 15px;
     right: 15px;
-    bottom: 5px;
+    bottom: 0;*/
 }
 
 .close-lightbox {
@@ -76,13 +76,18 @@ a[data-lightbox]:hover::before {
     padding: 6px 13px 1px 10px;
     left: 25px;
 }
-
+/*
 .snapshot-lb .modal-body {
     padding-bottom: 45px;
 }
+*/
+
+.modal-body {
+    padding: 15px 15px 0 15px!important;
+}
 
 .snapshot-lb .lightbox-caption {
-    padding: 0;
+    padding: 10px;
 }
 
 .portfolio-thumb {
@@ -176,10 +181,6 @@ blockquote::before {
     position: absolute;
     left: 10px;
     top: -10px;
-}
-
-img {
-
 }
 
 #lightbox-image {

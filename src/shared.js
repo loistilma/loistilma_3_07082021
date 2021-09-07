@@ -13,9 +13,3 @@ import 'bootstrap/js/collapse';
 
 // Chevron - scroll to top of pages
 import './scripts/scrollToTop';
-
-// Import favorite icon
-import './favicon.ico';
-
-// Import images
-import './images/logo-la-chouette-agence.webp';

@@ -28,7 +28,10 @@ module.exports = {
   output: {
     filename: 'scripts/[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    clean: true,
+    clean: {     
+      keep: /sitemap.txt$|.(webp|ico)$/i, // Keep these assets under 'ignored/dir'.
+    },
+
   },
   module: {
     rules: [
@@ -67,12 +70,10 @@ module.exports = {
     new HtmlWebpackInjectPreload({
       files: [
         {
-          //match: /^(?!.*fontawesome-webfont).*\.(woff|woff2)$/i,
           match: /.*\.(woff2)$/i,
           attributes: {as: 'font', type: 'font/woff2', crossorigin: true },
         },
         {
-          //match: /^(?!.*fontawesome-webfont).*\.(woff|woff2)$/i,
           match: /.*\.(woff)$/i,
           attributes: {as: 'font', type: 'font/woff', crossorigin: true },
         },
@@ -97,14 +98,14 @@ module.exports = {
       htmlpath: './src/pages',
     }),
     new HtmlWebpackPlugin({
-        inject: 'body',
-        description: '<meta name="description" content="Si vous avez une question ou que vous souhaitez collaborer avec notre agence. Venez-ici pour contacter notre équipe et nous parlez de votre projet.">',
-        title: 'Contact | Agence web design Lyon | La chouette agence',
-        template: './src/template.html',
-        filename: 'contact.html',
-        chunks: ['contact', 'shared'],
-        minify: true,
-        htmlpath: './src/pages',
+      inject: 'body',
+      description: '<meta name="description" content="Si vous avez une question ou que vous souhaitez collaborer avec notre agence. Venez-ici pour contacter notre équipe et nous parlez de votre projet.">',
+      title: 'Contact | Agence web design Lyon | La chouette agence',
+      template: './src/template.html',
+      filename: 'contact.html',
+      chunks: ['contact', 'shared'],
+      minify: true,
+      htmlpath: './src/pages',
     }),
     new PurgecssPlugin({
       paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`,  { nodir: true }),
