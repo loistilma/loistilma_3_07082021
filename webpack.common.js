@@ -29,7 +29,7 @@ module.exports = {
     filename: 'scripts/[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: {     
-      keep: /sitemap.txt$|.(webp|ico)$/i, // Keep these assets under 'ignored/dir'.
+      keep: /sitemap.xml$|.(webp|ico)$/i, // Keep these assets under 'ignored/dir'.
     },
 
   },
