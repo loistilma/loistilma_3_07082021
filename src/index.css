@@ -129,22 +129,20 @@ a[data-lightbox]:hover::before {
 
 }
 
-#bloc-2-services > .container-fluid > .row:first-of-type h2 {
+h2 {
     padding-bottom: 8px;
 }
 
-.h3-border {
+.h2-border {
     position: relative;
-    text-transform: uppercase;
-    padding-bottom: 7px;
 }
 
-.h3-border::after {
-    border-bottom: 1px solid #cecece;
+.h2-border::after {
+    border-bottom: 2px solid #cecece;
     content: "";
     position: absolute;
     bottom: 0;
-    width: 200px;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
     left: 0;
@@ -157,7 +155,6 @@ a[data-lightbox]:hover::before {
 
 #bloc-2-services figure {
     border-radius: 20px;
-    margin-top: 80px; /* margin-top: 30px; */
     padding-bottom: 15px;
 }
 
