@@ -3,20 +3,17 @@ const glob = require('glob')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const PurgecssPlugin = require('purgecss-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-//const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const HtmlWebpackInjectPreload = require('@principalstudio/html-webpack-inject-preload');
 const path = require('path');
 
-const PATHS = {
-  src: path.join(__dirname, 'src')
-}
-
 module.exports = {
   entry: {
+    // index entry depend on shared entry
     index: {
       import: './src/index.js',
       dependOn: 'shared',
     },
+    // contact entry depend on shared entry
     contact: {
       import: './src/contact.js',
       dependOn: 'shared',
@@ -28,10 +25,10 @@ module.exports = {
   output: {
     filename: 'scripts/[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    // Clean output folder before building
     clean: {     
-      keep: /\.(webp|ico)$/i, // Keep these assets under 'ignored/dir'.
+      keep: /\.(webp|ico)$/i, // Do not clean this files.
     },
-
   },
   module: {
     rules: [
@@ -63,14 +60,17 @@ module.exports = {
     ],
   },
   plugins: [
-    //new BundleAnalyzerPlugin(),
+    // Extract imported CSS into each chunk (shared.js -> shared.css, index.js -> index.css, contact.js -> contact.css)
     new MiniCssExtractPlugin({
       filename: "styles/[name].css",
     }),
+
+    // Inject <link preload> into html
     new HtmlWebpackInjectPreload({
       files: [
         {
           match: /.*\.(woff2)$/i,
+          // Example: <link rel="preload" href="fonts/glyphicons-halflings-regular.woff2" as="font" type="font/woff2" crossorigin>
           attributes: {as: 'font', type: 'font/woff2', crossorigin: true },
         },
         {
@@ -83,10 +83,14 @@ module.exports = {
         },
       ]
     }),
+
+    // Import global "$" and "jQuery"
     new webpack.ProvidePlugin({
         $: 'jquery',
         jQuery: 'jquery',
     }),
+
+    // Inject index.html and head tags into template.html
     new HtmlWebpackPlugin({
       inject: 'body',
       description: '<meta name="description" content="La chouette agence, entreprise spécialisée dans le web design basée à Lyon, vous aidera dans la création de vos sites internet.">',
@@ -97,6 +101,8 @@ module.exports = {
       minify: true, 
       htmlpath: './src/pages',
     }),
+
+    // Inject contact.html and head tags into template.html
     new HtmlWebpackPlugin({
       inject: 'body',
       description: '<meta name="description" content="Si vous avez une question ou que vous souhaitez collaborer avec notre agence. Venez-ici pour contacter notre équipe et nous parlez de votre projet.">',
@@ -107,6 +113,8 @@ module.exports = {
       minify: true,
       htmlpath: './src/pages',
     }),
+
+    // Remove unused CSS
     new PurgecssPlugin({
       paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`,  { nodir: true }),
     }),
