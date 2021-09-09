@@ -65,7 +65,7 @@ module.exports = {
       filename: "styles/[name].css",
     }),
 
-    // Inject <link preload> into html
+    // Inject <link rel="preload"> into html
     new HtmlWebpackInjectPreload({
       files: [
         {
@@ -98,7 +98,6 @@ module.exports = {
       template: './src/template.html',
       filename: 'index.html',
       chunks: ['index', 'shared'],
-      minify: true, 
       htmlpath: './src/pages',
     }),
 
@@ -110,7 +109,6 @@ module.exports = {
       template: './src/template.html',
       filename: 'contact.html',
       chunks: ['contact', 'shared'],
-      minify: true,
       htmlpath: './src/pages',
     }),
 
