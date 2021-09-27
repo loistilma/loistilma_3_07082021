@@ -579,7 +579,7 @@ h3 {
 }
 
 .h1, .h2, .h3, h1, h2, h3 {
-    margin-bottom: 0px!important;
+    /*margin-bottom: 0px;*/
     margin-top: 0px;
 }
 
